@@ -106,6 +106,65 @@ public function setup_post_type()
             }
     }
  ```
+* To use the class in a the loop instantiate the class without a post ID
+ ```php
+<?php if(have_posts()) : 
+       while(have_posts()) : 
+       the_post(); 
+       $news_article = new NewsArticle(); ?>
+       
+       <h1><?= $news_article->post_title; ?></h1>
+       
+<?php endwhile;
+       endif; ?>
+ ```
+* Alternatively you can pass a post ID when instantiating your class
 
+## Retrieving post data
+* All standard WP_Post properties are accesses as normal
+* Meta data can be retrieved by using the meta_key as if it was a property of the object
+ ```php
+ $newsArticle = new NewsAticle();
+ echo $newsArticle->{meta_key};
+ ```
+* If you have Advanced custom fields install you can also retrieved field data by using the field_name as if it was a property of the object 
+ ```php
+ $news_article = new NewsAticle();
+ 
+ $rows = $news_article->{field_name};
+
+ foreach($rows as $row) {
+    echo $row['{sub_field_name}']
+ }
+ ```
+ 
+## Useful methods
+#### PostType::get() 
+Allows you to query posts like you would with get_posts and WP_Query but it will return an array of your PostType objects and will automatically know what post type you're trying to query.
+ ```php
+ $args = array(
+     'posts_per_page' => 12,
+ );
+ 
+ $news_articles = NewsArticle::get($args);
+ 
+ foreach($news_articles as $news_article) {
+     echo $news_article->post_title;
+ }
+ ```
+#### PostType::getImage()
+This method returns a url of the featured image if the post has a featured image, otherwise it returns an empty string.
+ ```php
+ <?php $newsArticle = new NewsAticle(); ?>
+ <img src="<?= $newsArticle->getImage(); ?>" />
+
+ ```
+#### PostType::permalink()
+Returns the post permalink.
+ ```php
+ <?php $newsArticle = new NewsAticle(); ?>
+ <a href="<?= $newsArticle->permalink(); ?>"<?= $newsArticle->post_title; ?></a>
+ ```
+ 
 ## Issues
 If you have any suggestions or problems add an issue to this repository on github
