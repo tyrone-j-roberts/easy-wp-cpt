@@ -12,7 +12,7 @@ An easy way to register and interact with Wordpress Custom Post Types.
 ## Installation
 
 1. Clone or download the repo into you WordPress theme folder.
-2. Include the file in your function.php
+2. Include the file in your functions.php
 
 ```php
 include get_template_directory() . '/{class-directory}/PostType.php';
@@ -28,7 +28,7 @@ include get_template_directory() . '/{class-directory}/PostType.php';
      
  }
  ```
-* You need to implement the 'setPostTypeArgs()' abstract method to set the argument. For more information on the arguments needed for registering post types go to (https://codex.wordpress.org/Function_Reference/register_post_type)
+* You need to implement the 'setPostTypeArgs()' abstract method to set the arguments. For more information on the arguments needed for registering post types go to (https://codex.wordpress.org/Function_Reference/register_post_type)
  ```php
  <?php 
  class NewsArticle extends PostType { 
@@ -63,7 +63,7 @@ include get_template_directory() . '/{class-directory}/PostType.php';
          
  }
  ```
- * Include your new class in your function.php file
+ * Include your new class in your functions.php file
  ```php
  include get_template_directory() . '/{class-directory}/NewsArticle.php';
  ```
@@ -106,7 +106,7 @@ public function setup_post_type()
             }
     }
  ```
-* To use the class in a the loop instantiate the class without a post ID
+* To use the class in the loop instantiate the class without a post ID
  ```php
 <?php if(have_posts()) : 
        while(have_posts()) : 
@@ -121,13 +121,13 @@ public function setup_post_type()
 * Alternatively you can pass a post ID when instantiating your class
 
 ## Retrieving post data
-* All standard WP_Post properties are accesses as normal
-* Meta data can be retrieved by using the meta_key as if it was a property of the object
+* All standard WP_Post properties are accessed as normal
+* Meta data can be retrieved by using the meta_key like you would when accessing properties of an object 
  ```php
  $newsArticle = new NewsAticle();
  echo $newsArticle->{meta_key};
  ```
-* If you have Advanced custom fields install you can also retrieved field data by using the field_name as if it was a property of the object 
+* If you have Advanced custom fields install you can also retrieve field data by using the field_name like you would when accessing properties of an object 
  ```php
  $news_article = new NewsAticle();
  
