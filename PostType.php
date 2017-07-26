@@ -9,8 +9,8 @@ abstract class PostType
 
     /**
      * PostType constructor.
-     * Registers post type when initialized if it hasn't already been registered
-     * Can be initialised without an $id as long as it's in the loop
+     * Registers post type when instantiated if it hasn't already been registered
+     * Can be instantiated without an $id as long as it's in the loop
      * @param int $id
      */
     public function __construct($id = 0)
@@ -153,7 +153,9 @@ abstract class PostType
         return '';
     }
 
-    //Gets the post permalink
+    /** 
+    * Gets the post permalink
+    */
     public function permalink()
     {
         return get_permalink($this->ID);
