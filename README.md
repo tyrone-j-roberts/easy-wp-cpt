@@ -77,33 +77,33 @@ public function setup_post_type()
     {
         parent::setup_post_type();
         add_action('init', array($this, 'registerCategoryTaxonomy'));
-        
-        public function registerCategoryTaxonomy()
-            {
-                $labels = array(
-                    'name'              => 'Categories',
-                    'singular_name'     => 'Category',
-                    'search_items'      => 'Search Categories',
-                    'all_items'         => 'All Category',
-                    'parent_item'       => 'Parent Category',
-                    'parent_item_colon' => 'Parent Category:',
-                    'edit_item'         => 'Edit Category',
-                    'update_item'       => 'Update Category',
-                    'add_new_item'      => 'Add New Category',
-                    'new_item_name'     => 'New Category Name',
-                    'menu_name'         => 'Category'
-                );
-        
-                $args = array(
-                    'hierarchical'      => true,
-                    'labels'            => $labels,
-                    'show_ui'           => true,
-                    'show_admin_column' => true,
-                    'query_var'         => true,
-                    'rewrite'           => array( 'slug' => 'category' ),
-                );
-                register_taxonomy( 'news-category', self::getPostType(), $args);
-            }
+    }
+    
+    public function registerCategoryTaxonomy()
+    {
+         $labels = array(
+         'name' => 'Categories',
+         'singular_name' => 'Category',
+         'search_items' => 'Search Categories',
+         'all_items' => 'All Category',
+         'parent_item' => 'Parent Category',
+         'parent_item_colon' => 'Parent Category:',
+         'edit_item' => 'Edit Category',
+         'update_item' => 'Update Category',
+         'add_new_item' => 'Add New Category',
+         'new_item_name' => 'New Category Name',
+         'menu_name' => 'Category'
+         );
+
+         $args = array(
+         'hierarchical' => true,
+         'labels' => $labels,
+         'show_ui' => true,
+         'show_admin_column' => true,
+         'query_var' => true,
+         'rewrite' => array( 'slug' => 'category' ),
+         );
+         register_taxonomy( 'news-category', self::getPostType(), $args);
     }
  ```
 * To use the class in the loop instantiate the class without a post ID
