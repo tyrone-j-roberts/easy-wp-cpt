@@ -71,11 +71,11 @@ include get_template_directory() . '/{class-directory}/PostType.php';
  ```php
 new NewsArticle();
  ```
- * To add custom taxonomies or meta boxes just override the setup_post_type() method in your class
+ * To add custom taxonomies or meta boxes just override the setupPostType() method in your class
  ```php
-public function setup_post_type()
+public function setupPostType()
     {
-        parent::setup_post_type();
+        parent::setupPostType();
         add_action('init', array($this, 'registerCategoryTaxonomy'));
     }
     
